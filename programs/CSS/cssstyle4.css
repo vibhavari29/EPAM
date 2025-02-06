@@ -1,0 +1,7 @@
+@import "cssstyle4.1.css";
+
+h1 {
+    color: blue;
+    font-size: 300%;
+    text-align: center;
+}

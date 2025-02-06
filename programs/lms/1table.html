@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login and Registration Forms</title>
+    <script>
+        function validateForm() {
+            const dob = document.forms["registrationForm"]["dob"].value;
+            const age = new Date().getFullYear() - new Date(dob).getFullYear();
+            if (age < 18) {
+                alert("You must be at least 18 years old.");
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+
+<h2>Login Form</h2>
+<form action="#" method="post">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username" required><br><br>
+    
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" required><br><br>
+    
+    <input type="submit" value="Login">
+</form>
+
+<h2>Registration Form</h2>
+<form name="registrationForm" onsubmit="return validateForm()" method="post">
+    <label for="fullname">Full Name:</label><br>
+    <input type="text" id="fullname" name="fullname" required><br><br>
+    
+    <label for="dob">Date of Birth:</label><br>
+    <input type="date" id="dob" name="dob" required><br><br>
+    
+    <input type="submit" value="Register">
+</form>
+
+</body>
+</html>

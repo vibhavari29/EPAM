@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grid Layout Example 2</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: 200px 1fr 300px; 
+      grid-template-rows: 80px 1fr 60px; 
+      grid-template-areas: 
+        "header header header"
+        "navbar content aside"
+        "footer footer footer"; 
+      height: 100vh;
+      grid-gap: 10px;
+      background-color: #281d55;
+    }
+
+    .header {
+      grid-area: header;
+      background-color: hsl(333, 100%, 93%);
+      color: rgb(0, 0, 0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .navbar {
+      grid-area: navbar;
+      background-color: #d4f6ff;
+      color: rgb(47, 47, 47);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .content {
+      grid-area: content;
+      background-color: #eef1ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .aside {
+      grid-area: aside;
+      background-color: #d8f7ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .footer {
+      grid-area: footer;
+      background-color: #ffdee3;
+      color: rgb(11, 11, 11);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 10px;
+    }
+
+       .footer p {
+      margin: 0;
+    }
+
+    
+  </style>
+</head>
+<body>
+
+  <div class="grid-container">
+    <div class="header">
+      <h1>Header</h1>
+    </div>
+
+    <div class="navbar">
+      <h2>Navbar</h2>
+    </div>
+
+    <div class="content">
+      <h2>Content</h2>
+    </div>
+
+    <div class="aside">
+      <h2>Aside</h2>
+    </div>
+
+    <div class="footer">
+      <h2>Footer</h2>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layout</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      grid-template-columns: repeat(3, 1fr) auto;
+      grid-template-areas:
+        "header header header header"
+        "small-box small-box small-box sidebar"
+        "main-content main-content main-content sidebar"
+        "footer footer footer footer";
+      gap: 20px;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header {
+      grid-area: header;
+      background-color: rgb(174, 230, 53);
+      text-align: left;
+      padding: 20px;
+    }
+
+    .small-box {
+      background-color: rgb(174, 230, 53);
+      text-align: left;
+      padding: 75px;
+      border: 1px solid white;
+    }
+
+    .sidebar {
+      grid-area: sidebar;
+      background-color: rgb(174, 230, 53);
+      text-align: left;
+      padding: 20px;
+    }
+
+    .main-content {
+      grid-area: main-content;
+      background-color: rgb(174, 230, 53);
+      text-align: left;
+      padding: 150px;
+    }
+
+    .footer {
+      grid-area: footer;
+      background-color: rgb(174, 230, 53);
+      text-align: left;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">Header</div>
+    <div class="small-box">Small box</div>
+    <div class="small-box">Small box</div>
+    <div class="small-box">Small box</div>
+    <div class="sidebar">Sidebar</div>
+    <div class="main-content">Main content</div>
+    <div class="footer">Footer</div>
+  </div>
+</body>
+</html>

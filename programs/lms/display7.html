@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Payslip Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-size: 14px;
+            margin-top: 10px;
+            display: block;
+        }
+        input[type="number"], select {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #90d2ee;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+        .result p {
+            font-size: 16px;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Employee Payslip Form</h2>
+    <form id="payslip-form">
+        <label for="basic-pay">Basic Pay (₹):</label>
+        <input type="number" id="basic-pay" name="basic-pay" value="37900" readonly>
+
+        <label for="working-days">No. of Working Days:</label>
+        <input type="number" id="working-days" name="working-days" required>
+
+        <label for="days-present">No. of Days Present:</label>
+        <input type="number" id="days-present" name="days-present" required>
+
+        <label for="hra-type">Select HRA Type:</label>
+        <select id="hra-type" name="hra-type" required>
+            <option value="hostel">Hostel</option>
+            <option value="room">Room</option>
+            <option value="home">Home</option>
+        </select>
+
+        <button type="button" class="btn" onclick="calculatePayslip()">Calculate Payslip</button>
+    </form>
+
+    <div id="error-message" class="error"></div>
+
+    <div id="result" class="result" style="display: none;">
+        <h3>Salary Details</h3>
+        <p><strong>Basic Pay:</strong> ₹<span id="calculated-basic-pay"></span></p>
+        <p><strong>Days Present:</strong> <span id="calculated-days-present"></span></p>
+        <p><strong>Total Salary:</strong> ₹<span id="total-salary"></span></p>
+        <p><strong>DNS (9% of Basic Pay):</strong> ₹<span id="dns"></span></p>
+        <p><strong>HRA (according to your selection):</strong> ₹<span id="hra"></span></p>
+    </div>
+</div>
+
+<script>
+    function calculatePayslip() {
+        document.getElementById('error-message').innerText = '';
+
+        const basicPay = 37900;
+        const workingDays = parseInt(document.getElementById('working-days').value);
+        const daysPresent = parseInt(document.getElementById('days-present').value);
+        const hraType = document.getElementById('hra-type').value;
+
+        if (isNaN(workingDays) || isNaN(daysPresent) || daysPresent > workingDays || daysPresent < 0) {
+            document.getElementById('error-message').innerText = 'Please enter valid values for working days and days present.';
+            return;
+        }
+
+        const dailyPay = basicPay / workingDays;
+        const totalPay = dailyPay * daysPresent;
+
+        const dns = basicPay * 0.09;
+
+        let hra = 0;
+        if (hraType === 'hostel') {
+            hra = basicPay * 0.3;
+        } else if (hraType === 'room') {
+            hra = basicPay * 0.2;
+        } else if (hraType === 'home') {
+            hra = 0; 
+        }
+
+        document.getElementById('calculated-basic-pay').innerText = basicPay.toFixed(2);
+        document.getElementById('calculated-days-present').innerText = daysPresent;
+        document.getElementById('total-salary').innerText = totalPay.toFixed(2);
+        document.getElementById('dns').innerText = dns.toFixed(2);
+        document.getElementById('hra').innerText = hra.toFixed(2);
+
+        document.getElementById('result').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
